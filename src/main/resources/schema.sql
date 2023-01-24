@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS tutorials;
+
+CREATE TABLE tutorials (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(250) NOT NULL,
+    description VARCHAR(250) NOT NULL,
+    published VARCHAR(250) NOT NULL
+);
