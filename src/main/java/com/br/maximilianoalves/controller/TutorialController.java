@@ -4,8 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.br.maximilianoalves.error.ResourceNotFoundDetails;
+import com.br.maximilianoalves.error.ResourceNotFoundException;
 import com.br.maximilianoalves.model.Tutorial;
 import com.br.maximilianoalves.repository.TutorialRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +27,11 @@ public class TutorialController {
     @Autowired
     TutorialRepository tutorialRepository;
 
+    @Operation(summary = "", description = "Returns all tutorials", tags = { "GET - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "204", description = "Empty List", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)})
     @GetMapping("/tutorials")
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
         try {
@@ -33,24 +45,30 @@ public class TutorialController {
             if (tutorials.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-
             return new ResponseEntity<>(tutorials, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    @Operation(summary = "", description = "Returns a single tutorials", tags = { "GET - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Id not found", content = @Content(schema = @Schema(implementation = ResourceNotFoundDetails.class)))})
     @GetMapping("/tutorials/{id}")
     public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
         Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
 
-        if (tutorialData.isPresent()) {
-            return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        if (!tutorialData.isPresent())
+            throw new ResourceNotFoundException("ID not found: " + id);
+        return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
     }
 
+    @Operation(summary = "", description = "Add a single tutorial", tags = { "POST - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @PostMapping("/tutorials")
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         try {
@@ -62,6 +80,11 @@ public class TutorialController {
         }
     }
 
+    @Operation(summary = "", description = "Change a single tutorial", tags = { "PUT - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/tutorials/{id}")
     public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
         Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
@@ -77,6 +100,11 @@ public class TutorialController {
         }
     }
 
+    @Operation(summary = "", description = "Delete a single tutorial", tags = { "DELETE - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Successful operation", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @DeleteMapping("/tutorials/{id}")
     public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
         try {
@@ -87,6 +115,11 @@ public class TutorialController {
         }
     }
 
+    @Operation(summary = "", description = "Delete all tutorials", tags = { "DELETE - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Successful operation", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @DeleteMapping("/tutorials")
     public ResponseEntity<HttpStatus> deleteAllTutorials() {
         try {
@@ -98,6 +131,12 @@ public class TutorialController {
 
     }
 
+    @Operation(summary = "", description = "Returns all tutorial that published", tags = { "GET - tutorials" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = Tutorial.class))),
+            @ApiResponse(responseCode = "404", description = "Id not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
     @GetMapping("/tutorials/published")
     public ResponseEntity<List<Tutorial>> findByPublished() {
         try {
