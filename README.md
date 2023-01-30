@@ -21,3 +21,35 @@ This command will be create the database in memory, add data inside the database
 
 - API baseurl: localhost:8080/api/
 - Swagger documentation: localhost:8080/api/swagger-ui.html
+
+## Test Scenarios
+
+GET /tutorials: 
+- should be return with success all tutorials
+  - check 200 status code
+  - check schema object
+- should be return NO CONTENT when the list is empty
+  - dependencie: delete all tutorials before call GET /tutorials
+  - check 204 status code
+  - check empty body
+GET /tutorials/{id}: 
+- should be return with success a single tutorial
+  - check 200 status code
+  - check schema object for one tutorial
+- sould be return a error when put a nonexistance id.
+  - check 404 not found status
+  - check schema object for the error
+DELETE /tutorials:
+- should be deleted all tutorials with success
+  - check 204 status code
+  - check doesn't have body
+- should be return error when try delete all tutorials without tutorails registered
+  - check 500 status code
+  - check doesn't have body
+DELETE /tutorials/{id}:
+- should be deleted with success
+  - check 204 status code
+  - check doesn't have body
+- should be return error when try delete a tutorials with nonexistance id.
+  - check 500 status code
+  - schema error schema
