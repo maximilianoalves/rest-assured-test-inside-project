@@ -1,0 +1,257 @@
+{
+	"info": {
+		"_postman_id": "aaaa60b5-6c39-43c1-aed0-087f13caa938",
+		"name": "rest-assured-test-inside-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "784889"
+	},
+	"item": [
+		{
+			"name": "tutorials",
+			"item": [
+				{
+					"name": "/tutorials",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tutorials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Novo tutorials\",\r\n    \"description\": \"Muito legal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tutorials",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tutorials/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tutorials/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Novo tutorials\",\r\n    \"description\": \"Muito legal\",\r\n    \"published\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/tutorials/published",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkB1c2VyLmNvbS5iciIsImlhdCI6MTY3NTE4NzI4OCwiZXhwIjoxNjc1MTg4NzI4fQ.gKxxPxivRWFUsdL-BZtiP7OQgvJbwNSZJbKNCtJx9OM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/api/v1/tutorials/published",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"tutorials",
+								"published"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "/auth/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fistName\": \"test\",\r\n    \"lastName\": \"test\",\r\n    \"email\": \"test@email.com\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/auth/authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@user.com.br\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/auth/authenticate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

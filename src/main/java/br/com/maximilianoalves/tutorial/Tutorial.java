@@ -1,4 +1,4 @@
-package br.com.maximilianoalves.model;
+package br.com.maximilianoalves.tutorial;
 
 import jakarta.persistence.*;
 
