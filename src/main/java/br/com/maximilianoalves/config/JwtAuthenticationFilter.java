@@ -2,6 +2,9 @@ package br.com.maximilianoalves.config;
 
 import java.io.IOException;
 
+import br.com.maximilianoalves.error.ExpiredJwtException;
+import br.com.maximilianoalves.error.ResourceNotFoundException;
+import io.jsonwebtoken.Jwts;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,10 +29,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final UserDetailsService userDetailsService;
 
     @Override
-    protected void doFilterInternal(
+    protected void doFilterInternal (
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain) throws ServletException, IOException {
+            @NonNull FilterChain filterChain) throws IOException, ServletException {
 
         final String authHeader = request.getHeader("Authorization");
         final String jwt;

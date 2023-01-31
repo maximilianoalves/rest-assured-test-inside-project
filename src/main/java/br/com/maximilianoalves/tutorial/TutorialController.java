@@ -32,7 +32,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "204", description = "Empty List", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)})
-    @GetMapping("/")
+    @GetMapping(value = {"/", ""})
     public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
         try {
             List<Tutorial> tutorials = new ArrayList<Tutorial>();
@@ -55,7 +55,7 @@ public class TutorialController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Id not found", content = @Content(schema = @Schema(implementation = ResourceNotFoundDetails.class)))})
-    @GetMapping("/{id}")
+    @GetMapping(value = {"/{id}", "/{id}/"})
     public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
         Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
 
@@ -69,7 +69,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    @PostMapping("/")
+    @PostMapping(value = {"/", ""})
     public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
         try {
             Tutorial _tutorial = tutorialRepository
@@ -85,7 +85,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
-    @PutMapping("/{id}")
+    @PutMapping(value = {"/{id}", "/{id}/"})
     public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
         Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
 
@@ -105,7 +105,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "204", description = "Successful operation", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = {"/{id}", "/{id}/"})
     public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
         try {
             tutorialRepository.deleteById(id);
@@ -120,7 +120,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "204", description = "Successful operation", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    @DeleteMapping("/")
+    @DeleteMapping(value = {"/", ""})
     public ResponseEntity<HttpStatus> deleteAllTutorials() {
         try {
             tutorialRepository.deleteAll();
@@ -137,7 +137,7 @@ public class TutorialController {
             @ApiResponse(responseCode = "404", description = "Id not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    @GetMapping("/published")
+    @GetMapping(value = {"/published", "/published/"})
     public ResponseEntity<List<Tutorial>> findByPublished() {
         try {
             List<Tutorial> tutorials = tutorialRepository.findByPublished(true);

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import br.com.maximilianoalves.error.ExpiredJwtException;
+import br.com.maximilianoalves.error.ResourceNotFoundException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +23,8 @@ public class JwtService {
     private static final String SECRET_KEY = "614E645267556B58703273357638782F413F4428472B4B6250655368566D5971";
 
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
-
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
+        Claims claims = extractAllClaims(token);
+        return claims.getSubject();
     }
 
     public String generateToken(UserDetails userDetails) {
@@ -35,7 +33,6 @@ public class JwtService {
 
     public String generateToken(
             Map<String, Object> extraClaims, UserDetails userDetails) {
-        System.out.println(new Date(System.currentTimeMillis() + 1000 * 60 * 24));
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -52,21 +49,21 @@ public class JwtService {
     }
 
     private boolean isTokenExpired(String token) {
-        System.out.println(extractExpiration(token).before(new Date()));
         return extractExpiration(token).before(new Date());
     }
 
     public Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
+        Claims claims = extractAllClaims(token);
+        return claims.getExpiration();
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts
-                .parserBuilder()
-                .setSigningKey(getSignInKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+            return Jwts
+                    .parserBuilder()
+                    .setSigningKey(getSignInKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
     }
 
     private Key getSignInKey() {
