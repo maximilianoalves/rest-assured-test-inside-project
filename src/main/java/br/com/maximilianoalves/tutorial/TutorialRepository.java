@@ -1,8 +1,7 @@
-package br.com.maximilianoalves.repository;
+package br.com.maximilianoalves.tutorial;
 
 import java.util.List;
 
-import br.com.maximilianoalves.model.Tutorial;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TutorialRepository extends JpaRepository<Tutorial, Long> {
