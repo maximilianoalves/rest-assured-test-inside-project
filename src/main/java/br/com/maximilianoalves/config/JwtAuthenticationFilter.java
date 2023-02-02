@@ -2,9 +2,6 @@ package br.com.maximilianoalves.config;
 
 import java.io.IOException;
 
-import br.com.maximilianoalves.error.ExpiredJwtException;
-import br.com.maximilianoalves.error.ResourceNotFoundException;
-import io.jsonwebtoken.Jwts;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
