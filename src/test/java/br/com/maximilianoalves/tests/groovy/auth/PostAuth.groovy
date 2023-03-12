@@ -1,16 +1,14 @@
-package br.com.maximilianoalves.tests.auth;
+package br.com.maximilianoalves.tests.groovy.auth
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Test;
+import br.com.maximilianoalves.tests.groovy.BaseTest
+import org.json.JSONException
+import org.json.JSONObject
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.given
 
-public class PostAuth {
+class PostAuth extends BaseTest {
 
-
-    public String getBearerToken() {
-
+    String getBearerToken() {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("email", "admin@user.com.br");

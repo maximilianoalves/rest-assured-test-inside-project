@@ -23,7 +23,6 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         ObjectMapper objectMapper = new ObjectMapper();
         ObjectNode unauthError = objectMapper.createObjectNode();
-        unauthError.put("status", HttpStatus.UNAUTHORIZED.value());
         unauthError.put("message", "Authentication failed" );
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

@@ -37,6 +37,10 @@ public class AuthenticationController {
         }
     }
 
+    @Operation(summary = "", description = "Create and generate token for a user", tags = { "POST - Auth" })
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content),
+            @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(schema = @Schema(implementation = UserAlreadyExists.class)))})
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));

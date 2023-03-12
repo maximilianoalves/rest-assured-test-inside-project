@@ -1,4 +1,4 @@
-package br.com.maximilianoalves;
+package br.com.maximilianoalves.tests.java;
 
 import io.restassured.RestAssured;
 import org.junit.Before;

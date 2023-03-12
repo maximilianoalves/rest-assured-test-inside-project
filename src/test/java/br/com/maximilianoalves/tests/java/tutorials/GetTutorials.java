@@ -1,7 +1,7 @@
-package br.com.maximilianoalves.tests.tutorials;
+package br.com.maximilianoalves.tests.java.tutorials;
 
-import br.com.maximilianoalves.BaseTests;
-import br.com.maximilianoalves.tests.auth.PostAuth;
+import br.com.maximilianoalves.tests.java.BaseTests;
+import br.com.maximilianoalves.tests.java.auth.PostAuth;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
