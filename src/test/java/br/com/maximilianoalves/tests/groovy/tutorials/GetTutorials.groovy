@@ -3,9 +3,8 @@ package br.com.maximilianoalves.tests.groovy.tutorials
 import br.com.maximilianoalves.tests.groovy.BaseTest
 import br.com.maximilianoalves.tests.java.auth.PostAuth
 import org.junit.Test
-import org.springframework.http.HttpStatus
-
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.greaterThan
 
 class GetTutorials extends BaseTest {
 
@@ -17,10 +16,10 @@ class GetTutorials extends BaseTest {
         def request = given().header("Authorization", postAuth.bearerToken)
 
         when: "get all tutorials"
-        def response = request.get("api/v1/tutorials")
+        def response = request.when().get("api/v1/tutorials")
 
         then: "should be 200 okey, response have content"
         response.then()
-            .statusCode(200)
+            .statusCode(200).body("results.size()", greaterThan(0));
     }
 }
