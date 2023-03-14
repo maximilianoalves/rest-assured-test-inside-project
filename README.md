@@ -17,10 +17,10 @@
 
 ## Run API.
 ``` mvn spring-boot:run ```
-This command will be create the database in memory, add data inside the database and able access to endpoint. 
+This command will be created the database in memory, add data inside the database and able access to endpoint. 
 
 - API baseurl: localhost:8080/api/
-- Swagger documentation: localhost:8080/api/swagger-ui.html
+- Swagger documentation: http://localhost:8080/swagger-ui/index.html
 
 ## Test Scenarios
 
@@ -29,7 +29,7 @@ This command will be create the database in memory, add data inside the database
     - check 200 status code
     - check schema object  
   - should be return NO CONTENT when the list is empty
-    - dependencie: delete all tutorials before call GET /tutorials
+    - dependencies: delete all tutorials before call GET /tutorials
     - check 204 status code
     - check empty body  
 - GET /tutorials/{id}:  
@@ -50,6 +50,6 @@ This command will be create the database in memory, add data inside the database
   - should be deleted with success
     - check 204 status code
     - check doesn't have body
-  - should be return error when try delete a tutorials with nonexistance id.
+  - should be return error when try to delete a tutorials with nonexistance id.
     - check 500 status code
     - schema error schema
